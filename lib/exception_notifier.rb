@@ -16,6 +16,8 @@ class ExceptionNotifier
                                message: options.dig(:data, :message) || e.message)
     end
 
+    private
+
     def neat_backtrace(exception)
       return '' unless exception.backtrace
       bc.clean(exception.backtrace).first(3).join('|')
