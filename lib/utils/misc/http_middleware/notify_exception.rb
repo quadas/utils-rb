@@ -6,8 +6,6 @@
 #     f.response :notify_exception
 #     f.adapter  Faraday.default_adapter
 #   end
-require 'exception_notification'
-
 module Utils
   module Misc
     module HTTPMiddleware
