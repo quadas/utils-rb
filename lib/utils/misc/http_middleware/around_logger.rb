@@ -28,7 +28,7 @@ module Utils
           @logger.info "#{tags_text}Request body: #{request_env[:body]}"
           @app.call(request_env).on_complete do |response_env|
             ended_at   = Time.now
-            @logger.info "#{tags_text}Response body: #{response_env[:body]}" if write_body?(response_env[:response_headers]['Content-Length'])
+            @logger.info "#{tags_text}Response body: #{response_env[:body]}" if write_body?(response_env[:response_headers]['content-length'])
             @logger.info "#{tags_text}Completed #{response_env[:status]} in #{((ended_at - started_at)* 1000).to_i}ms"
           end
         end

@@ -41,7 +41,7 @@ describe Utils::Misc::HTTPMiddleware::AroundLogger do
           expect(logger).to receive(:info).with(/\[SSP Audit\] \[Nex\] Response body:/).ordered
           expect(logger).to receive(:info).ordered
 
-          perform(headers: { 'Content-Length' => 99 }, body: 'body', middleware_options: { logger: logger, write_body: { threshold: 100 } })
+          perform(headers: { 'content-length' => 99 }, body: 'body', middleware_options: { logger: logger, write_body: { threshold: 100 } })
         end
 
         it 'write body when over assigned threshold' do
@@ -49,7 +49,7 @@ describe Utils::Misc::HTTPMiddleware::AroundLogger do
           expect(logger).not_to receive(:info).with(/\[SSP Audit\] \[Nex\] Response body:/)
           expect(logger).to receive(:info).ordered
 
-          perform(headers: { 'Content-Length' => 101 }, body: 'body', middleware_options: { logger: logger, write_body: { threshold: 100 } })
+          perform(headers: { 'content-length' => 101 }, body: 'body', middleware_options: { logger: logger, write_body: { threshold: 100 } })
         end
       end
 
@@ -59,7 +59,7 @@ describe Utils::Misc::HTTPMiddleware::AroundLogger do
           expect(logger).to receive(:info).with(/\[SSP Audit\] \[Nex\] Response body:/).ordered
           expect(logger).to receive(:info).ordered
 
-          perform(headers: { 'Content-Length' => 100 }, body: 'body', middleware_options: { logger: logger, write_body: true })
+          perform(headers: { 'content-length' => 100 }, body: 'body', middleware_options: { logger: logger, write_body: true })
         end
 
         it 'will not write body when over default threshold' do
@@ -67,7 +67,7 @@ describe Utils::Misc::HTTPMiddleware::AroundLogger do
           expect(logger).not_to receive(:info).with(/\[SSP Audit\] \[Nex\] Response body:/)
           expect(logger).to receive(:info).ordered
 
-          perform(headers: { 'Content-Length' => 300 }, body: 'body', middleware_options: { logger: logger, write_body: {} })
+          perform(headers: { 'content-length' => 300 }, body: 'body', middleware_options: { logger: logger, write_body: {} })
         end
       end
     end
