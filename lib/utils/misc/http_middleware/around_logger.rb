@@ -8,6 +8,9 @@
 #     end
 #     f.adapter  Faraday.default_adapter
 #   end
+require 'active_support/core_ext/object/blank'
+require 'logger'
+
 module Utils
   module Misc
     module HTTPMiddleware
@@ -17,7 +20,7 @@ module Utils
         def initialize(app, options = {})
           super(app)
           @options = options
-          @logger = options[:logger].presence || Rails.logger
+          @logger = options[:logger].presence || (defined?(Rails) ? ::Rails.logger : ::Logger.new(STDOUT))
           yield self if block_given?
         end
 
